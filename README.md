@@ -1,3 +1,5 @@
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="Chocolate TV Launcher logo" width="112" height="112">
+
 # Chocolate TV Launcher
 
 Chocolate is a customizable home launcher for Android TV and Google TV. It is built in Kotlin with Jetpack Compose for TV and designed for D-pad navigation.
