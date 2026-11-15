@@ -1,0 +1,31 @@
+# Android Studio and machine-specific configuration
+.idea/
+*.iml
+local.properties
+keystore.properties
+signing.properties
+
+# Gradle and Android build output
+.gradle/
+.kotlin/
+build/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.idsig
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+
+# Local device data and scratch files
+captures/
+screenshots/
+*.log
+ChocolateTVLauncher-*.json
+.env
+.env.*
+.DS_Store
+Thumbs.db

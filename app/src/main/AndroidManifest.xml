@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Discover launchable apps without requesting visibility of every installed package. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+
+    <!-- Poster art for recommended content (below) is typically fetched over http(s); nothing
+         else in the app makes network requests. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Needed to read Watch Next / recommendation-channel content published by other apps
+         via TvContractCompat for the "Continue Watching" / "Top Picks for You" home rows.
+         Declaring both since sources disagree on which one gates these specific tables. -->
+    <uses-permission android:name="android.permission.READ_TV_LISTINGS" />
+    <uses-permission android:name="com.android.providers.tv.permission.READ_EPG_DATA" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:banner="@mipmap/ic_banner"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Chocolate Launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ChocolateTVLauncher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".remote.RemoteButtonService"
+            android:exported="true"
+            android:label="@string/remote_service_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/remote_button_service" />
+        </service>
+
+        <!-- Requires the user to manually grant "Notification access" in system settings —
+             BIND_NOTIFICATION_LISTENER_SERVICE is a signature permission only the system holds,
+             so this can't be requested via a runtime-permission dialog. See
+             NotificationsPreference / Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS. -->
+        <service
+            android:name=".data.LauncherNotificationListenerService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
