@@ -2,6 +2,23 @@
 
 Chocolate is a customizable home launcher for Android TV and Google TV. It is built in Kotlin with Jetpack Compose for TV and designed for D-pad navigation.
 
+## Screenshots
+
+![Chocolate TV Launcher home screen with 16:9 app banners](Screenshot-preview/home-look1.png)
+
+<details>
+<summary>More screenshots</summary>
+
+| Alternate home layout | Square app tiles |
+| --- | --- |
+| ![Home screen with rounded app banners](Screenshot-preview/home-look2.png) | ![Home screen with a grid of square app icons](Screenshot-preview/home-look3.png) |
+| **App folder** | **App actions** |
+| ![A folder containing four TV apps](Screenshot-preview/folder.png) | ![App menu with artwork, editing, and visibility options](Screenshot-preview/app-more-info.png) |
+| **Preferences** | |
+| ![Searchable preferences panel](Screenshot-preview/preferences.png) | |
+
+</details>
+
 ## Features
 
 - Reorder apps, create folders, hide apps, and customize tile artwork and colors.
